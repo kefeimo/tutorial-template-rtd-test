@@ -72,7 +72,7 @@ Verify git installation
 #. Download VOLTTRON code
 ------------------------------
 
-Download the VOLTTRON code to the default home directory using `git clone` command.
+Download the VOLTTRON code to the default home directory using :code:`git clone` command.
 .. code-block:: bash
 
        $ cd ~
@@ -156,7 +156,7 @@ Now we activate the Python virtual environment
        $ source env/bin/activate
 
 
-You may notice the command prompt has changed with the virtual environment name as prefix. (i.e., `(volttron) user@host:~/volttron $ `).
+You may notice the command prompt has changed with the virtual environment name as prefix. (i.e., :code:`(volttron) user@host:~/volttron $ `).
 
 You can use the following command to verify if you are inside a virtual environment
 
@@ -200,7 +200,7 @@ Now we are ready to start VOLTTRON
 
 .. tip::
 
-    Use `vctl status` to check status. 
+    Use :code:`vctl status` to check status. 
     This is a very useful command to inspect the status of VOLTTRON.
 
 
@@ -220,7 +220,7 @@ Now let’s install agents.
 
 .. tip::
 
-    While the `--tag` command is optional, a tag comes in handy to track agents. 
+    While the :code:`--tag` sub-command is optional, a tag comes in handy to track agents. 
     You can choose any tag name that makes sense to you. (More on tag.)
 
 
@@ -261,7 +261,7 @@ Check the status again
 
 Nice, it seems the listener agent is functioning properly!
 
-In addition to the `vctl status`, we would like to show you another way to check VOLTTRON status by inspecting the `volttron.log`.
+In addition to the :code:`vctl status`, we would like to show you another way to check VOLTTRON status by inspecting the :code:`volttron.log`.
 
 .. code-block:: bash
 
@@ -285,20 +285,6 @@ In addition to the `vctl status`, we would like to show you another way to check
          2022-03-04 13:16:05,469 (listeneragent-3.3 3233) volttron.platform.vip.agent.core ERROR: Another common reason is not having an auth entry onthe target instance.
          2022-03-04 13:16:05,469 (listeneragent-3.3 3233) volttron.platform.vip.agent.core ERROR: Shutting down agent.
          ...
-
-
-
-.. tabs::
-
-   .. tab:: ExpectedResult-Success
-
-      .. code-block:: bash
-
-         # example output (success)
-         # listener agent is publishing heartbeat messages successively.
-         2022-03-04 14:12:46,463 (listeneragent-3.3 2192) __main__ INFO: Peer: pubsub, Sender: listeneragent-3.3_1:, Bus:          , Topic: heartbeat/listeneragent-3.3_1, Headers: {'TimeStamp': '2022-03-04T19:12:46.460096+00:00', 'min_compatible_version': '3.0', 'max_compatible_version': ''}, Message:
-'GOOD'
-...
 
 
 .. _Clean-up:
@@ -328,8 +314,8 @@ After shutting down, check the status again.
 
 To remove the whole VOLTTRON package
 
-- remove the code folder (e.g., `~/volttron/`)
-- remove the `.volttron/` folder at `VOLTTRON_HOME/.volttron` (e.g., by default at `~/.volttron`)
+- remove the code folder (e.g., :code:`~/volttron/`)
+- remove the :code:`.volttron/` folder at :code:`VOLTTRON_HOME/.volttron` (e.g., by default at :code:`~/.volttron`)
 
 Next Steps
 ==========

@@ -1,0 +1,379 @@
+.. _VOLTTRON-Quick-Start:
+
+.. role:: bash(code)
+   :language: bash
+
+=======================
+VOLTTRON Quick Start
+=======================
+
+This tutorial has been written with the intent of helping folks get up and running with VOLTTRON and is designed to deploy on Linux virtual machines. While not going too much into depth, it covers the following topics:
+
+-   Install the VOLTTRON platform and verify the installation.
+-   Get familiar with the VOLTTRON components.
+-   Get familiar with the VOLTTRON command.
+
+.. _Prerequisites:
+
+Prerequisites
+==============================
+
+In this tutorial we will demonstrate installing the VOLTTRON platform at an Ubuntu 18.04.6 LTS (Bionic Beaver) Virtual machine. In order to follow the tutorial the following are required
+
+-   Linux OS image (e.g., Ubuntu 18.04.6)
+-   Virtualization software (e.g., VirtualBox, VMware)
+-   Internet accessibility
+-   sudo capability
+
+.. _Installation-Steps:
+
+Installation Steps
+==============================
+
+.. _Install-prerequisites:
+
+#. Install prerequisites
+------------------------------
+
+The following packages will need to be installed on the system: git, build-essential, python3.6-dev, python3.6-venv, openssl, libssl-dev, libevent-dev.
+
+Install the dependencies with the following command:
+
+.. code-block:: bash
+
+       sudo apt-get update
+       sudo apt-get install build-essential python3-dev python3-venv openssl libssl-dev libevent-dev git
+
+Verify python installation with the following command:
+
+.. code-block:: bash
+
+       python3 --version
+
+.. tabs::
+
+   .. tab:: ExpectedResult
+
+      .. code-block:: bash
+
+         # expected output similar to this
+         Python 3.6.9
+
+Verify git installation
+
+.. code-block:: bash
+
+       git --version
+
+.. tabs::
+
+   .. tab:: ExpectedResult
+
+      .. code-block:: bash
+
+         # expected output similar to this
+         git version 2.17.1
+
+
+.. _Download-VOLTTRON-code:
+
+#. Download VOLTTRON code
+------------------------------
+
+In this tutorial we will download the VOLTTRON code to the default home directory using git clone command. Feel free to download the code to a different place as desired.
+
+.. code-block:: bash
+
+       git clone https://github.com/VOLTTRON/volttron
+
+.. tabs::
+
+   .. tab:: ExpectedResult
+
+      .. code-block:: bash
+
+         # expected output similar to this
+         Cloning into 'volttron'...
+         remote: Enumerating objects: 82987, done.
+         remote: Counting objects: 100% (4892/4892), done.
+         remote: Compressing objects: 100% (1971/1971), done.
+         remote: Total 82987 (delta 3155), reused 4294 (delta 2890), pack-reused 78095
+         Receiving objects: 100% (82987/82987), 102.73 MiB | 4.19 MiB/s, done.
+         Resolving deltas: 100% (57997/57997), done.
+         Checking out files: 100% (1807/1807), done.
+
+Now get inside the code path and inspect the structure
+
+.. code-block:: bash
+
+       cd volttron
+       ls
+
+.. tabs::
+
+   .. tab:: ExpectedResult
+
+      .. code-block:: bash
+
+         # expected output similar to this
+         bootstrap.py     deprecated    pylintrc          requirements.py  stop-volttron
+         ci-integration   docs          pytest.ini        scripts          TERMS.md
+         CONTRIBUTING.md  examples      README.md         services         volttron
+         COPYRIGHT        integrations  readthedocs.yml   setup.py         volttron_data
+         debugging_utils  LICENSE.md    RELEASE_NOTES.md  start-volttron   volttrontesting
+
+.. _Bootstrap-VOLTTRON-environment:
+
+#. Bootstrap VOLTTRON environment
+------------------------------
+
+VOLTTRON is a Python-based platform. In this step, we will rely on The bootstrap.py  script in the VOLTTRON root directory to create a virtual environment  and install the package's Python dependencies.
+
+.. note::
+
+   VOLTTRON provides different message bus options. In this tutorial we will demonstrate the default ZeroMQ option. (more about message bus)
+
+
+Running the following command (this may take a while)
+
+.. code-block:: bash
+
+       python3 bootstrap.py
+
+.. tabs::
+
+   .. tab:: ExpectedResult
+
+      .. code-block:: bash
+
+         # expected output similar to this
+         UPDATE: []
+         Installing required packages
+         + pip install --no-deps wheel==0.30
+         Collecting wheel==0.30
+           Using cached                            <https://files.pythonhosted.org/packages/0c/80/16a85b47702a1f47a63c104c91abdd0a6704ee8ae3b4ce4afc49bc39f9d9/wheel-0.30.0-py2.py3-none-any.whl>
+...
+
+Now we activate the Python virtual environment
+
+.. code-block:: bash
+
+       source env/bin/activate
+
+You may notice the command prompt has changed with the virtual environment name as prefix. (i.e., `(volttron) user@host:~/volttron$`).
+
+You can use the following command to verify if you are inside a virtual environment
+
+.. code-block:: bash
+
+       env |grep VIRTUAL_ENV |wc -l
+
+.. tabs::
+
+   .. tab:: ExpectedResult
+
+      .. code-block:: bash
+
+         # expected output 1(inside a virtual environment) or 0 (not inside)
+
+To deactivate the virtual environment (if you run this command, remember to activate the virtual environment again to follow the rest of the steps.)              
+
+.. code-block:: bash
+
+       # Uncomment, if you run this command,
+       # remember to activate the virtual environment again
+       # to follow the rest of the steps
+
+       # deactivate volttron
+
+.. _Start-VOLTTRON:
+
+#. Start VOLTTRON
+------------------------------
+
+Now we are ready to start VOLTTRON
+
+.. code-block:: bash
+
+       ./start-volttron
+
+.. tabs::
+
+   .. tab:: ExpectedResult
+
+      .. code-block:: bash
+
+         # expected output similar to this
+         ...
+         Starting VOLTTRON verbosely in the background with VOLTTRON_HOME=/home/user/.volttron
+         Waiting for VOLTTRON to startup..
+         VOLTTRON startup complete
+
+
+.. tip::
+
+    Use vctl status to check status. 
+    This is a very useful command to inspect the status of VOLTTRON.
+
+
+. code-block:: bash
+
+       vctl status
+
+For fresh installation, the result might look the following since there are no agents installed yet. (more about agent)
+
+.. tabs::
+
+   .. tab:: ExpectedResult
+
+      .. code-block:: bash
+
+         # expected output similar to this
+         No installed Agents found
+
+Now let’s install agents. 
+
+
+.. tip::
+
+    While the `--tag` command is optional, a tag comes in handy to track agents. 
+    You can choose any tag name that makes sense to you. (More on tag.)
+
+
+. code-block:: bash
+
+       vctl install examples/ListenerAgent --tag listener
+
+.. tabs::
+
+   .. tab:: ExpectedResult
+
+      .. code-block:: bash
+
+         # expected output similar to this
+         Agent b755bae2-a3f5-44a0-b01f-81e30b989138 installed
+
+Then let’s start the agent.
+
+. code-block:: bash
+
+       vctl start --tag listener
+
+.. tabs::
+
+   .. tab:: ExpectedResult
+
+      .. code-block:: bash
+
+         # expected output similar to this
+         Starting b755bae2-a3f5-44a0-b01f-81e30b989138 listeneragent-3.3
+
+Check the status again
+
+. code-block:: bash
+
+       vctl status
+
+.. tabs::
+
+   .. tab:: ExpectedResult
+
+      .. code-block:: bash
+
+         # expected output similar to this
+         UUID AGENT             IDENTITY            TAG      STATUS          HEALTH
+         8 listeneragent-3.3 listeneragent-3.3_1 listener running [2192]  GOOD
+
+
+
+This guide will specify commands to use to successfully install the platform on supported Linux distributions, but a
+working knowledge of Linux will be helpful for troubleshooting and may improve your ability to get more out of your
+deployment.
+
+.. note::
+
+    Volttron version 7.0rc1 is currently tested for Ubuntu versions 18.04 and 18.10 as well as Linux Mint version 19.3.
+    Version 6.x is tested for Ubuntu versions 16.04 and 18.04 as well as Linux Mint version 19.1.
+
+
+Nice, it seems the listener agent is functioning properly!
+
+In addition to the `vctl status`, we would like to show you another way to check VOLTTRON status by inspecting the volttron.log.
+
+. code-block:: bash
+
+       tail -f volttron.log
+
+.. tabs::
+
+   .. tab:: ExpectedResult-Success
+
+      .. code-block:: bash
+
+         # example output (success)
+         # listener agent is publishing heartbeat messages successively.
+         2022-03-04 14:12:46,463 (listeneragent-3.3 2192) __main__ INFO: Peer: pubsub, Sender: listeneragent-3.3_1:, Bus:          , Topic: heartbeat/listeneragent-3.3_1, Headers: {'TimeStamp': '2022-03-04T19:12:46.460096+00:00', 'min_compatible_version': '3.0', 'max_compatible_version': ''}, Message:
+'GOOD'
+...
+
+.. tab:: ExpectedResult-Fail
+
+      .. code-block:: bash
+
+         # example output (error)
+         2022-03-04 13:16:05,469 (listeneragent-3.3 3233) volttron.platform.vip.agent.core ERROR: No response to hello message after 10 seconds.
+         2022-03-04 13:16:05,469 (listeneragent-3.3 3233) volttron.platform.vip.agent.core ERROR: Type of message bus used zmq
+         2022-03-04 13:16:05,469 (listeneragent-3.3 3233) volttron.platform.vip.agent.core ERROR: A common reason for this is a conflicting VIP IDENTITY.
+         2022-03-04 13:16:05,469 (listeneragent-3.3 3233) volttron.platform.vip.agent.core ERROR: Another common reason is not having an auth entry onthe target instance.
+         2022-03-04 13:16:05,469 (listeneragent-3.3 3233) volttron.platform.vip.agent.core ERROR: Shutting down agent.
+...
+
+
+.. _Clean-up:
+
+#. Clean up
+------------------------------
+
+. code-block:: bash
+
+       ./stop-volttron
+
+.. tabs::
+
+   .. tab:: ExpectedResult-Success
+
+      .. code-block:: bash
+
+         # expected output similar to this
+         Shutting down VOLTTRON
+
+After shutting down, check the status again.
+
+. code-block:: bash
+
+       vctl status
+
+.. tabs::
+
+   .. tab:: ExpectedResult-Success
+
+      .. code-block:: bash
+
+         # expected output similar to this
+         VOLTTRON is not running. This command requires VOLTTRON platform to be running
+
+To remove the whole VOLTTRON package
+
+- remove the code folder (e.g., `~/volttron/`)
+- remove the `.volttron/` folder at `VOLTTRON_HOME/.volttron` (e.g., by default at `~/.volttron`)
+
+Next Steps
+==========
+
+There are several walk-throughs and detailed explanations of platform features to explore additional aspects of the
+platform:
+
+*   :ref:`Agent Framework <Agent-Framework>`
+*   :ref:`Driver Framework <Driver-Framework>`
+*   Demonstration of the :ref:`management UI <Device-Configuration-in-VOLTTRON-Central>`
+*   :ref:`RabbitMQ setup <RabbitMQ-Overview>` with Federation and Shovel plugins

@@ -72,11 +72,23 @@ Verify git installation
 #. Download VOLTTRON code
 ------------------------------
 
-In this tutorial we will download the VOLTTRON code to the default home directory using git clone command. Feel free to download the code to a different place as desired.
+Download the VOLTTRON code to the default home directory using `git clone` command.
+.. code-block:: bash
+
+       $ cd ~
+       $ git clone https://github.com/VOLTTRON/volttron
+
+.. note::
+
+   In this tutorial we download the VOLTTRON code to the default home directory. 
+   However, feel free to download the code to a different place as desired.
 
 .. code-block:: bash
 
-       $ git clone https://github.com/VOLTTRON/volttron
+       # $ mkdir <path-to-dir>
+       # $ cd <path-to-dir>
+       # $ git clone https://github.com/VOLTTRON/volttron
+
 
 .. code-block:: bash
 
@@ -261,7 +273,20 @@ In addition to the `vctl status`, we would like to show you another way to check
        # example output (success)
        # listener agent is publishing heartbeat messages successively.
        2022-03-04 14:12:46,463 (listeneragent-3.3 2192) __main__ INFO: Peer: pubsub, Sender: listeneragent-3.3_1:, Bus: , Topic: heartbeat/listeneragent-3.3_1, Headers: {'TimeStamp': '2022-03-04T19:12:46.460096+00:00', 'min_compatible_version': '3.0', 'max_compatible_version': ''}, Message: 'GOOD'
-...
+       ...
+
+
+.. code-block:: bash
+
+       # example output (error)
+         2022-03-04 13:16:05,469 (listeneragent-3.3 3233) volttron.platform.vip.agent.core ERROR: No response to hello message after 10 seconds.
+         2022-03-04 13:16:05,469 (listeneragent-3.3 3233) volttron.platform.vip.agent.core ERROR: Type of message bus used zmq
+         2022-03-04 13:16:05,469 (listeneragent-3.3 3233) volttron.platform.vip.agent.core ERROR: A common reason for this is a conflicting VIP IDENTITY.
+         2022-03-04 13:16:05,469 (listeneragent-3.3 3233) volttron.platform.vip.agent.core ERROR: Another common reason is not having an auth entry onthe target instance.
+         2022-03-04 13:16:05,469 (listeneragent-3.3 3233) volttron.platform.vip.agent.core ERROR: Shutting down agent.
+         ...
+
+
 
 .. tabs::
 
@@ -275,51 +300,31 @@ In addition to the `vctl status`, we would like to show you another way to check
 'GOOD'
 ...
 
-.. tab:: ExpectedResult-Fail
-
-      .. code-block:: bash
-
-         # example output (error)
-         2022-03-04 13:16:05,469 (listeneragent-3.3 3233) volttron.platform.vip.agent.core ERROR: No response to hello message after 10 seconds.
-         2022-03-04 13:16:05,469 (listeneragent-3.3 3233) volttron.platform.vip.agent.core ERROR: Type of message bus used zmq
-         2022-03-04 13:16:05,469 (listeneragent-3.3 3233) volttron.platform.vip.agent.core ERROR: A common reason for this is a conflicting VIP IDENTITY.
-         2022-03-04 13:16:05,469 (listeneragent-3.3 3233) volttron.platform.vip.agent.core ERROR: Another common reason is not having an auth entry onthe target instance.
-         2022-03-04 13:16:05,469 (listeneragent-3.3 3233) volttron.platform.vip.agent.core ERROR: Shutting down agent.
-...
-
 
 .. _Clean-up:
 
 #. Clean up
 ------------------------------
 
-. code-block:: bash
+.. code-block:: bash
 
-       ./stop-volttron
+       $ ./stop-volttron
 
-.. tabs::
+.. code-block:: bash
 
-   .. tab:: ExpectedResult-Success
-
-      .. code-block:: bash
-
-         # expected output similar to this
-         Shutting down VOLTTRON
+       # expected output similar to this
+       Shutting down VOLTTRON
 
 After shutting down, check the status again.
 
-. code-block:: bash
+.. code-block:: bash
 
-       vctl status
+       $ vctl status
 
-.. tabs::
+.. code-block:: bash
 
-   .. tab:: ExpectedResult-Success
-
-      .. code-block:: bash
-
-         # expected output similar to this
-         VOLTTRON is not running. This command requires VOLTTRON platform to be running
+       # expected output similar to this
+       VOLTTRON is not running. This command requires VOLTTRON platform to be running
 
 To remove the whole VOLTTRON package
 

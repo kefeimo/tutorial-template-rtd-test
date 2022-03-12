@@ -194,7 +194,7 @@ Now we are ready to start VOLTTRON
 .. code-block:: bash
 
        # expected output similar to this
-         ...
+       ...
        Starting VOLTTRON verbosely in the background with VOLTTRON_HOME=/home/user/.volttron
        Waiting for VOLTTRON to startup..
        VOLTTRON startup complete
@@ -282,12 +282,12 @@ In addition to the :code:`vctl status`, we would like to show you another way to
 .. code-block:: bash
 
        # example output (error)
-         2022-03-04 13:16:05,469 (listeneragent-3.3 3233) volttron.platform.vip.agent.core ERROR: No response to hello message after 10 seconds.
-         2022-03-04 13:16:05,469 (listeneragent-3.3 3233) volttron.platform.vip.agent.core ERROR: Type of message bus used zmq
-         2022-03-04 13:16:05,469 (listeneragent-3.3 3233) volttron.platform.vip.agent.core ERROR: A common reason for this is a conflicting VIP IDENTITY.
-         2022-03-04 13:16:05,469 (listeneragent-3.3 3233) volttron.platform.vip.agent.core ERROR: Another common reason is not having an auth entry onthe target instance.
-         2022-03-04 13:16:05,469 (listeneragent-3.3 3233) volttron.platform.vip.agent.core ERROR: Shutting down agent.
-         ...
+       2022-03-04 13:16:05,469 (listeneragent-3.3 3233) volttron.platform.vip.agent.core ERROR: No response to hello message after 10 seconds.
+       2022-03-04 13:16:05,469 (listeneragent-3.3 3233) volttron.platform.vip.agent.core ERROR: Type of message bus used zmq
+       2022-03-04 13:16:05,469 (listeneragent-3.3 3233) volttron.platform.vip.agent.core ERROR: A common reason for this is a conflicting VIP IDENTITY.
+       2022-03-04 13:16:05,469 (listeneragent-3.3 3233) volttron.platform.vip.agent.core ERROR: Another common reason is not having an auth entry onthe target instance.
+       2022-03-04 13:16:05,469 (listeneragent-3.3 3233) volttron.platform.vip.agent.core ERROR: Shutting down agent.
+       ...
 
 
 .. _Clean-up:

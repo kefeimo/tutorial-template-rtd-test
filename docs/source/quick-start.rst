@@ -188,7 +188,7 @@ Now we are ready to start VOLTTRON
 
 .. code-block:: bash
 
-       ./start-volttron
+       $ ./start-volttron
 
 .. code-block:: bash
 

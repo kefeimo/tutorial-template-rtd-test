@@ -132,7 +132,7 @@ VOLTTRON is a Python-based platform. In this step, we will rely on The bootstrap
    VOLTTRON provides different message bus options. In this tutorial we will demonstrate the default ZeroMQ option. (Read more about :ref:`message bus<Message-Bus>`.)
 
 
-Running the following command (this may take a while)
+Running the following command. (This may take a while.)
 
 .. code-block:: bash
 
@@ -157,7 +157,7 @@ Now we activate the Python virtual environment
        $ source env/bin/activate
 
 
-You may notice the command prompt has changed with the virtual environment name as prefix. (i.e., :code:`(volttron) user@host:~/volttron $ `).
+You may notice the command prompt has changed with the virtual environment name as prefix. (i.e., :code:`(volttron) user@host:~/volttron $`).
 
 You can use the following command to verify if you are inside a virtual environment
 

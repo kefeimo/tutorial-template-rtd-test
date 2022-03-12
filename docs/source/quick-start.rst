@@ -73,6 +73,7 @@ Verify git installation
 ------------------------------
 
 Download the VOLTTRON code to the default home directory using :code:`git clone` command.
+
 .. code-block:: bash
 
        $ cd ~

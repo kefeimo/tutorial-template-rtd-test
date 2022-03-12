@@ -18,9 +18,9 @@ This tutorial has been written with the intent of helping folks get up and runni
 Prerequisites
 ==============================
 
-In this tutorial we will demonstrate installing the VOLTTRON platform at an Ubuntu 18.04.6 LTS (Bionic Beaver) Virtual machine. In order to follow the tutorial the following are required
+In this tutorial we will demonstrate installing the VOLTTRON platform at an `Ubuntu 20.04 LTS (Focal Fossa) Virtual machine <https://releases.ubuntu.com/20.04/>`_. In order to follow the tutorial the following are required
 
--   Linux OS image (e.g., Ubuntu 18.04.6)
+-   Linux OS image (e.g., Ubuntu 20.04)
 -   Virtualization software (e.g., VirtualBox, VMware)
 -   Internet accessibility
 -   sudo capability
@@ -32,10 +32,10 @@ Installation Steps
 
 .. _Install-prerequisites:
 
-#. Install prerequisites
+1. Install prerequisites
 ------------------------------
 
-The following packages will need to be installed on the system: git, build-essential, python3.6-dev, python3.6-venv, openssl, libssl-dev, libevent-dev.
+The following packages will need to be installed on the system: git, build-essential, python3-dev, python3-venv, openssl, libssl-dev, libevent-dev.
 
 Install the dependencies with the following command:
 
@@ -53,7 +53,7 @@ Verify python installation with the following command:
 .. code-block:: bash
 
        # expected output similar to this
-       Python 3.6.9
+       Python 3.8.10
 
 
 Verify git installation
@@ -65,11 +65,11 @@ Verify git installation
 .. code-block:: bash
 
        # expected output similar to this
-       git version 2.17.1
+       git version 2.25.1
 
 .. _Download-VOLTTRON-code:
 
-#. Download VOLTTRON code
+2. Download VOLTTRON code
 ------------------------------
 
 Download the VOLTTRON code to the default home directory using :code:`git clone` command.
@@ -121,14 +121,14 @@ Now get inside the code path and inspect the structure
 
 .. _Bootstrap-VOLTTRON-environment:
 
-#. Bootstrap VOLTTRON environment
+3. Bootstrap VOLTTRON environment
 ------------------------------
 
 VOLTTRON is a Python-based platform. In this step, we will rely on The bootstrap.py  script in the VOLTTRON root directory to create a virtual environment  and install the package's Python dependencies.
 
 .. note::
 
-   VOLTTRON provides different message bus options. In this tutorial we will demonstrate the default ZeroMQ option. (more about message bus)
+   VOLTTRON provides different message bus options. In this tutorial we will demonstrate the default ZeroMQ option. (Read more about :ref:`message bus<Message-Bus>`.)
 
 
 Running the following command (this may take a while)
@@ -181,7 +181,7 @@ To deactivate the virtual environment (if you run this command, remember to acti
 
 .. _Start-VOLTTRON:
 
-#. Start VOLTTRON
+4. Start VOLTTRON
 ------------------------------
 
 Now we are ready to start VOLTTRON
@@ -208,20 +208,22 @@ Now we are ready to start VOLTTRON
 
        $ vctl status
 
-For fresh installation, the result might look the following since there are no agents installed yet. (more about agent)
+For fresh installation, the result might look the following since there are no agents installed yet. 
 
 .. code-block:: bash
 
        # expected output similar to this
        No installed Agents found
 
-Now let’s install agents. 
+VOLTTRON platform comes with several built in services and example agents out of the box. (Read more about :ref:`agent <Agent-Framework>`.)
+
+In this demo, we use the Listener Agent - a simple agent that periodically publishes heartbeat message and listens to everything on the message bus. Install and start the Listener agent using the following command:
 
 
 .. tip::
 
     While the :code:`--tag` sub-command is optional, a tag comes in handy to track agents. 
-    You can choose any tag name that makes sense to you. (More on tag.)
+    You can choose any tag name that makes sense to you. (Read more about :ref:`tag <Tagging-Service-Specification>`.)
 
 
 .. code-block:: bash
@@ -289,8 +291,8 @@ In addition to the :code:`vctl status`, we would like to show you another way to
 
 .. _Clean-up:
 
-#. Clean up
-------------------------------
+Clean up
+==============================
 
 .. code-block:: bash
 

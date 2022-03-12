@@ -204,7 +204,7 @@ Now we are ready to start VOLTTRON
     This is a very useful command to inspect the status of VOLTTRON.
 
 
-. code-block:: bash
+.. code-block:: bash
 
        $ vctl status
 

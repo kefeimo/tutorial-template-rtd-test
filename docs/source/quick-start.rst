@@ -18,7 +18,7 @@ This tutorial has been written with the intent of helping folks get up and runni
 Prerequisites
 ==============================
 
-In this tutorial we will demonstrate installing the VOLTTRON platform at an `Ubuntu 20.04 LTS (Focal Fossa) Virtual machine <https://releases.ubuntu.com/20.04/>`_. In order to follow the tutorial the following are required
+In this tutorial we will demonstrate installing the VOLTTRON platform at an `Ubuntu 20.04 LTS (Focal Fossa) <https://releases.ubuntu.com/20.04/>`_ Virtual machine. In order to follow the tutorial the following are required
 
 -   Linux OS image (e.g., Ubuntu 20.04)
 -   Virtualization software (e.g., VirtualBox, VMware)

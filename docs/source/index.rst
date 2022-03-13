@@ -21,3 +21,4 @@ Contents
    usage
    api
    quick-start
+   fail-url-test-on-purpose

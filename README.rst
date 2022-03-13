@@ -1,3 +1,6 @@
+[![Check URLs](https://github.com/kefeimo/tutorial-template-rtd-test/actions/workflows/urlchecker-checkout.yml/badge.svg)](https://github.com/kefeimo/tutorial-template-rtd-test/actions/workflows/urlchecker-checkout.yml)
+
+
 Template for the Read the Docs tutorial
 =======================================
 

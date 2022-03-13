@@ -248,7 +248,7 @@ From the above result, we can tell the listener agent is functioning properly!
 
     While the :code:`--tag` sub-command is optional, a tag is helpful for managing agents by adding semantic tags to different topics, so that topic can be queried by tags instead of specific topic name or topic name pattern. 
 
-    You can choose any tag name that makes sense to you (but tags must already defined in the VOLTTRON tagging schema. Read more about :ref:`tag <Tagging-Service-Specification>`.)
+    You can choose any tag name that makes sense to you, as long as the tags are already defined in the VOLTTRON tagging schema. (Read more about :ref:`tag <Tagging-Service-Specification>`.)
 
 In addition to the :code:`vctl status`, another way to check VOLTTRON status is by inspecting the :code:`volttron.log` file. The file provides rich information about the platform and becomes handy for debug purposes.
 

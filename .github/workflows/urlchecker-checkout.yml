@@ -33,4 +33,4 @@ jobs:
         exclude_patterns: https://github.com/SuperKogito/Voice-based-gender-recognition/issues
 
         # choose if the force pass or not
-        force_pass : true
+        force_pass : false

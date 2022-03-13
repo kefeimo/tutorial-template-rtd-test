@@ -7,37 +7,29 @@
 VOLTTRON Quick Start
 =======================
 
-This tutorial has been written with the intent of helping folks get up and running with VOLTTRON and is designed to deploy on Linux virtual machines. While not going too much into depth, it covers the following topics:
+This tutorial has been written with the intent of helping folks get up-and-running with VOLTTRON. The tutorial is designed to deploy on Linux virtual machines. While not going too much into depth, it covers the following topics:
 
 -   Install the VOLTTRON platform and verify the installation.
 -   Get familiar with the VOLTTRON components.
--   Get familiar with the VOLTTRON command.
-
-.. _Prerequisites:
+-   Get familiar with the VOLTTRON commands.
 
 Prerequisites
 ==============================
 
-In this tutorial we will demonstrate installing the VOLTTRON platform at an `Ubuntu 20.04 LTS (Focal Fossa) <https://releases.ubuntu.com/20.04/>`_ Virtual machine. In order to follow the tutorial the following are required
+In this tutorial we will demonstrate installing the VOLTTRON platform at an `Ubuntu 20.04 LTS (Focal Fossa) <https://releases.ubuntu.com/20.04/>`_ Virtual machine. In order to follow the tutorial, the prerequisites are as follows:
 
 -   Linux OS image (e.g., Ubuntu 20.04)
 -   Virtualization software (e.g., VirtualBox, VMware)
 -   Internet accessibility
 -   sudo capability
 
-.. _Installation-Steps:
-
 Installation Steps
 ==============================
-
-.. _Install-prerequisites:
 
 1. Install prerequisites
 ------------------------------
 
-The following packages will need to be installed on the system: git, build-essential, python3-dev, python3-venv, openssl, libssl-dev, libevent-dev.
-
-Install the dependencies with the following command:
+The first step is to make sure required dependencies are fulfilled. Install the dependencies with the following command:
 
 .. code-block:: bash
 
@@ -56,7 +48,7 @@ Verify python installation with the following command:
        Python 3.8.10
 
 
-Verify git installation
+Similarly, verify git installation.
 
 .. code-block:: bash
 
@@ -67,8 +59,6 @@ Verify git installation
        # expected output similar to this
        git version 2.25.1
 
-.. _Download-VOLTTRON-code:
-
 2. Download VOLTTRON code
 ------------------------------
 
@@ -78,18 +68,6 @@ Download the VOLTTRON code to the default home directory using :code:`git clone`
 
        $ cd ~
        $ git clone https://github.com/VOLTTRON/volttron
-
-.. note::
-
-   In this tutorial we download the VOLTTRON code to the default home directory. 
-   However, feel free to download the code to a different place as desired.
-
-.. code-block:: bash
-
-       # $ mkdir <path-to-dir>
-       # $ cd <path-to-dir>
-       # $ git clone https://github.com/VOLTTRON/volttron
-
 
 .. code-block:: bash
 
@@ -104,7 +82,18 @@ Download the VOLTTRON code to the default home directory using :code:`git clone`
        Checking out files: 100% (1807/1807), done.
        ...
 
-Now get inside the code path and inspect the structure
+.. note::
+
+   In this tutorial we download the VOLTTRON code to the default home directory. 
+   However, feel free to download the code to a different place as desired.
+
+.. code-block:: bash
+
+       # $ mkdir <path-to-dir>
+       # $ cd <path-to-dir>
+       # $ git clone https://github.com/VOLTTRON/volttron
+
+After successfully downloading the VOLTTRON package, change the current working path to the code path. Then, inspect the source code files.
 
 .. code-block:: bash
 
@@ -120,19 +109,17 @@ Now get inside the code path and inspect the structure
        COPYRIGHT        integrations  readthedocs.yml   setup.py         volttron_data
        debugging_utils  LICENSE.md    RELEASE_NOTES.md  start-volttron   volttrontesting
 
-.. _Bootstrap-VOLTTRON-environment:
-
 3. Bootstrap VOLTTRON environment
 ------------------------------
 
-VOLTTRON is a Python-based platform. In this step, we will rely on The bootstrap.py  script in the VOLTTRON root directory to create a virtual environment  and install the package's Python dependencies.
+VOLTTRON is a Python-based platform. In this step, we will rely on the :code:`bootstrap.py` script in the root directory to bootstrap the platform environment. This process will create a virtual environment and install the package's Python dependencies.
 
 .. note::
 
    VOLTTRON provides different message bus options. In this tutorial we will demonstrate the default ZeroMQ option. (Read more about :ref:`message bus<Message-Bus>`.)
 
 
-Running the following command. (This may take a while.)
+Bootstrap the VOLTTRON environment by running the following command. (This may take a while.)
 
 .. code-block:: bash
 
@@ -150,16 +137,15 @@ Running the following command. (This may take a while.)
        ...
 
 
-Now we activate the Python virtual environment
+After bootstrap finished, we activate the Python virtual environment with the following command:
 
 .. code-block:: bash
 
        $ source env/bin/activate
 
+You may notice the command prompt has changed and there is the virtual environment name as prefix. e.g., :code:`(volttron) user@host:~/volttron $`. The prefix environment name indicates the virtual environment is activated.
 
-You may notice the command prompt has changed with the virtual environment name as prefix. (i.e., :code:`(volttron) user@host:~/volttron $`).
-
-You can use the following command to verify if you are inside a virtual environment
+Alternatively, you can use the following command to verify if the virtual environment is up.
 
 .. code-block:: bash
 
@@ -167,7 +153,7 @@ You can use the following command to verify if you are inside a virtual environm
 
 .. code-block:: bash
 
-       # expected output 1(inside a virtual environment) or 0 (not inside)
+       # expected output 1(virtual environment is up) or 0 (not up)
 
 
 To deactivate the virtual environment (if you run this command, remember to activate the virtual environment again to follow the rest of the steps.)              
@@ -180,12 +166,12 @@ To deactivate the virtual environment (if you run this command, remember to acti
 
        # deactivate volttron
 
-.. _Start-VOLTTRON:
-
 4. Start VOLTTRON
 ------------------------------
 
-Now we are ready to start VOLTTRON
+In this step, we will start the VOLTTRON platform and demonstrate several VOLTTRON commands.
+
+Start the VOLTTRON platform with the following command:
 
 .. code-block:: bash
 
@@ -199,33 +185,27 @@ Now we are ready to start VOLTTRON
        Waiting for VOLTTRON to startup..
        VOLTTRON startup complete
 
-.. tip::
-
-    Use :code:`vctl status` to check status. 
-    This is a very useful command to inspect the status of VOLTTRON.
-
+Check the status of VOLTTRON with the following command:
 
 .. code-block:: bash
 
        $ vctl status
 
-For fresh installation, the result might look the following since there are no agents installed yet. 
+For fresh installation, the result might look like the following since there are no agents installed yet. 
 
 .. code-block:: bash
 
        # expected output similar to this
        No installed Agents found
 
-VOLTTRON platform comes with several built in services and example agents out of the box. (Read more about :ref:`agent <Agent-Framework>`.)
-
-In this demo, we use the Listener Agent - a simple agent that periodically publishes heartbeat message and listens to everything on the message bus. Install and start the Listener agent using the following command:
-
-
 .. tip::
 
-    While the :code:`--tag` sub-command is optional, a tag comes in handy to track agents. 
-    You can choose any tag name that makes sense to you. (Read more about :ref:`tag <Tagging-Service-Specification>`.)
+    Use :code:`vctl status` to check status. 
+    This is a very useful command to inspect the status of VOLTTRON.
 
+VOLTTRON platform comes with several built in services and example agents out of the box. In this demo, we use the Listener Agent - a simple agent that periodically publishes heartbeat message and listens to everything on the message bus. (Read more about :ref:`agent <Agent-Framework>`.)
+
+Install the Listener agent using the following command:
 
 .. code-block:: bash
 
@@ -238,7 +218,7 @@ In this demo, we use the Listener Agent - a simple agent that periodically publi
        Agent b755bae2-a3f5-44a0-b01f-81e30b989138 installed
 
 
-Then let’s start the agent.
+Start the agent we just installed specified by the `listener` tag.
 
 .. code-block:: bash
 
@@ -249,7 +229,7 @@ Then let’s start the agent.
        # expected output similar to this
        Starting b755bae2-a3f5-44a0-b01f-81e30b989138 listeneragent-3.3
 
-Check the status again
+Check the status again.
 
 .. code-block:: bash
 
@@ -262,9 +242,15 @@ Check the status again
        8 listeneragent-3.3 listeneragent-3.3_1 listener running [2192]  GOOD
 
 
-Nice, it seems the listener agent is functioning properly!
+From the above result, we can tell the listener agent is functioning properly!
 
-In addition to the :code:`vctl status`, we would like to show you another way to check VOLTTRON status by inspecting the :code:`volttron.log`.
+.. tip::
+
+    While the :code:`--tag` sub-command is optional, a tag is helpful for managing agents by adding semantic tags to different topics, so that topic can be queried by tags instead of specific topic name or topic name pattern. 
+
+    You can choose any tag name that makes sense to you (but tags must already defined in the VOLTTRON tagging schema. Read more about :ref:`tag <Tagging-Service-Specification>`.)
+
+In addition to the :code:`vctl status`, another way to check VOLTTRON status is by inspecting the :code:`volttron.log` file. The file provides rich information about the platform and becomes handy for debug purposes.
 
 .. code-block:: bash
 
@@ -289,11 +275,10 @@ In addition to the :code:`vctl status`, we would like to show you another way to
        2022-03-04 13:16:05,469 (listeneragent-3.3 3233) volttron.platform.vip.agent.core ERROR: Shutting down agent.
        ...
 
+5. Stop VOLTTRON (Optional)
+------------------------------
 
-.. _Clean-up:
-
-Clean up
-==============================
+To stop VOLTTRON, use the following command: 
 
 .. code-block:: bash
 
@@ -304,7 +289,7 @@ Clean up
        # expected output similar to this
        Shutting down VOLTTRON
 
-After shutting down, check the status again.
+After stopping the platform, check the status again to verify the VOLTTRON platform is shut down.
 
 .. code-block:: bash
 
@@ -315,13 +300,26 @@ After shutting down, check the status again.
        # expected output similar to this
        VOLTTRON is not running. This command requires VOLTTRON platform to be running
 
-To remove the whole VOLTTRON package
+Clean up (Optional)
+==============================
+
+If for some reason you would like to clean up VOLTTRON, here is the guide to remove the whole VOLTTRON package
 
 - remove the code folder (e.g., :code:`~/volttron/`)
 - remove the :code:`.volttron/` folder at :code:`VOLTTRON_HOME/.volttron` (e.g., by default at :code:`~/.volttron`)
 
+Summary
+==============================
+
+This short tutorial for VOLTTRON first-time users. We covered the following topics. 
+
+-   VOLTTRON platform installation. (e.g., on a Virtual Machine.)
+-   VOLTTRON components. (e.g., agent, message bus, tag.)
+-   VOLTTRON commands. (e.g., :code:`start-volttron`, :code:`vctl status`.)
+
+
 Next Steps
-==========
+==============================
 
 There are several walk-throughs and detailed explanations of platform features to explore additional aspects of the
 platform:
